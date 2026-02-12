@@ -8,14 +8,13 @@ RUN npm ci
 COPY . .
 RUN npm run build
 
-# Runtime stage
-FROM nginx:1.27-alpine AS runtime
+# Runtime stage (Vite preview)
+FROM node:20-alpine AS runtime
+WORKDIR /app
 
-# Replace default nginx config to support SPA routing
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /app/package.json /app/package-lock.json ./
+COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /app/dist ./dist
 
-# Copy build output
-COPY --from=build /app/dist /usr/share/nginx/html
-
-EXPOSE 8080
-CMD ["npm", "run", "dev"]
+EXPOSE 8081
+CMD ["npm", "run", "preview", "--", "--host", "0.0.0.0", "--port", "8081"]
