@@ -17,4 +17,4 @@ COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/dist ./dist
 
 EXPOSE 8081
-CMD ["npm", "run", "preview", "--", "--host", "0.0.0.0", "--port", "8081"]
+CMD ["npm","run","dev"]
