@@ -12,7 +12,7 @@ export default defineConfig({
     host: "0.0.0.0",
     port: 8081,
     strictPort: false,
-    allowedHosts: true,   // ✅ allow all hosts
+    allowedHosts: ["shanmukha.thetrust.ai", ".thetrust.ai", "localhost"],
     fs: {
       deny: [".git", "**/.git/**"],
       allow: [".."],
@@ -21,10 +21,10 @@ export default defineConfig({
 
   // Vite preview (this is what you're using)
   preview: {
-    host: "0.0.0.0",       // ✅ required
+    host: "0.0.0.0",
     port: 8081,
     strictPort: false,
-    allowedHosts: true,    // ✅ allow domain access
+    allowedHosts: ["shanmukha.thetrust.ai", ".thetrust.ai", "localhost"],
   },
 
   resolve: {
