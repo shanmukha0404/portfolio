@@ -5,10 +5,20 @@ import { inspectAttr } from 'kimi-plugin-inspect-react'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: './',
+  base: "/",
   plugins: [inspectAttr(), react()],
+  server: {
+    allowedHosts: ["shanmukha.thetrust.ai", "localhost"],
+    host: "0.0.0.0",
+    port: 8081,
+    strictPort: false,
+    fs: {
+      deny: [".git", "**/.git/**"],
+      allow: [".."],
+    },
+  },
   preview: {
-    allowedHosts: ["shanmukha.thetrust.ai"],
+    allowedHosts: ["shanmukha.thetrust.ai", "localhost"],
   },
   resolve: {
     alias: {
